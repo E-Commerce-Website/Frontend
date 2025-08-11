@@ -1,19 +1,30 @@
-import { Routes, Route } from 'react-router-dom';
-import LoginPage from './CustomerPages/LoginPage.jsx';
-import SignupPage from './CustomerPages/SignupPage';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
+// Main pages
+import Welcome from "./pages/Welcome";
 
-function App() {
+// Producer pages
+import ProducerLogin from "./pages/ProducerLogin";
+import ProducerSignUp from "./pages/ProducerSignUp";
+
+// Customer pages
+import LoginPage from "./CustomerPages/LoginPage";
+import SignupPage from "./CustomerPages/SignupPage";
+
+export default function App() {
   return (
-    <>
-    
-
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
+      {/* Main Page */}
+      <Route path="/" element={<Welcome />} />
+
+      {/* Producer Routes */}
+      <Route path="/producer-login" element={<ProducerLogin />} />
+      <Route path="/producer-signup" element={<ProducerSignUp />} />
+
+      {/* Customer Routes */}
+      <Route path="/customer-login" element={<LoginPage />} />
+      <Route path="/customer-signup" element={<SignupPage />} />
     </Routes>
-    </>
   );
 }
-
-export default App;
