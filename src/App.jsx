@@ -11,6 +11,7 @@ import ProducerSignUp from "./pages/ProducerSignUp";
 // Customer pages
 import LoginPage from "./CustomerPages/LoginPage";
 import SignupPage from "./CustomerPages/SignupPage";
+import ForgotpasswordPage from "./CustomerPages/ForgotpasswordPage";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       {/* Customer Routes */}
       <Route path="/customer-login" element={<LoginPage />} />
       <Route path="/customer-signup" element={<SignupPage />} />
+      <Route path="/forgot-password" element={<ForgotpasswordPage />} />
     </Routes>
   );
 }
