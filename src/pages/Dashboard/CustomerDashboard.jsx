@@ -1,10 +1,7 @@
 import React from "react";
-import ProductCard from "../../components/ProductCard"; // ✅ Product Card component
-import bannerImg from "../../assets/banner.png"; 
-import washingMachine from "../../assets/washing-machine.png"; 
-import snacks from "../../assets/snacks.png"; 
-import fashion1 from "../../assets/fashion1.png"; 
-import fashion2 from "../../assets/fashion2.png"; 
+import { Link } from "react-router-dom";
+import ProductCard from "../../components/ProductCard";
+import bannerImg from "../../assets/banner.png";
 
 export default function CustomerDashboard() {
   return (
@@ -45,10 +42,22 @@ export default function CustomerDashboard() {
       <div className="px-6 pb-10">
         <h2 className="text-lg font-semibold mb-4">Recent search</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <ProductCard image={washingMachine} title="Washing Machine" />
-          <ProductCard image={snacks} title="Snacks Pack" />
-          <ProductCard image={fashion1} title="Men's Fashion" />
-          <ProductCard image={fashion2} title="Women's Dress" />
+          {/* ✅ Each product navigates to its category */}
+          <Link to="/customer/collection/Electronics">
+            <ProductCard image="/Products/Electronics/washing1.png" title="Washing Machine" />
+          </Link>
+
+          <Link to="/customer/collection/Snacks">
+            <ProductCard image="/Products/Snacks/snacks1.png" title="Snacks Pack" />
+          </Link>
+
+          <Link to="/customer/collection/Men">
+            <ProductCard image="/Products/Men/men1.png" title="Men's Fashion" />
+          </Link>
+
+          <Link to="/customer/collection/Women">
+            <ProductCard image="/Products/Women/women1.png" title="Women's Dress" />
+          </Link>
         </div>
       </div>
     </div>

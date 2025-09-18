@@ -19,6 +19,7 @@ import Orders from "./CustomerPages/Orders";
 import Cart from "./CustomerPages/Cart";
 import Profile from "./CustomerPages/Profile";
 import Logout from "./CustomerPages/Logout";
+import CustomerCollection from "./pages/Dashboard/CustomerCollection";
 
 // Layout
 import CustomerLayout from "./layouts/CustomerLayout";
@@ -33,19 +34,20 @@ export default function App() {
       {/* Producer Routes */}
       <Route path="/producer-login" element={<ProducerLogin />} />
       <Route path="/producer-signup" element={<ProducerSignUp />} />
-      <Route path="/producer-dashboard" element={<ProducerDashboard />} />
+
+      {/* ✅ Producer Layout with Navbar */}
+      <Route element={<ProducerLayout />}>
+        <Route path="/producer-dashboard" element={<ProducerDashboard />} />
+        <Route path="/producer-products" element={<div>My Products Page</div>} />
+        <Route path="/producer-add-product" element={<div>Add Product Page</div>} />
+        <Route path="/producer-orders" element={<div>Orders Page</div>} />
+        <Route path="/producer-logout" element={<div>Logout Page</div>} />
+      </Route>
 
       {/* Customer Auth Routes */}
       <Route path="/customer-login" element={<LoginPage />} />
       <Route path="/customer-signup" element={<SignupPage />} />
       <Route path="/forgot-password" element={<ForgotpasswordPage />} />
-      <Route element={<ProducerLayout />}>
-  <Route path="/producer-dashboard" element={<ProducerDashboard />} />
-  <Route path="/producer-products" element={<div>My Products Page</div>} />
-  <Route path="/producer-add-product" element={<div>Add Product Page</div>} />
-  <Route path="/producer-orders" element={<div>Orders Page</div>} />
-  <Route path="/producer-logout" element={<div>Logout Page</div>} />
-</Route>
 
       {/* ✅ Customer Layout with Navbar */}
       <Route
@@ -93,6 +95,16 @@ export default function App() {
         element={
           <CustomerLayout>
             <Logout />
+          </CustomerLayout>
+        }
+      />
+
+      {/* ✅ Customer Collection (category pages) */}
+      <Route
+        path="/customer/collection/:category"
+        element={
+          <CustomerLayout>
+            <CustomerCollection />
           </CustomerLayout>
         }
       />

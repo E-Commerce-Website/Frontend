@@ -1,8 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import userImg from "../assets/user.png";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const linkClasses = ({ isActive }) =>
     isActive
       ? "text-yellow-300 font-semibold border-b-2 border-yellow-300 pb-1"
@@ -11,12 +14,24 @@ export default function Navbar() {
   return (
     <header className="bg-pink-500 text-white shadow">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        
+        {/* 🔙 Back button (only show if NOT on dashboard/home) */}
+        {location.pathname !== "/customer-dashboard" && (
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-white hover:text-yellow-200"
+          >
+            <span className="text-xl">⬅</span>
+            <span className="font-semibold">Back</span>
+          </button>
+        )}
+
         {/* Logo */}
         <h1 className="text-2xl font-bold tracking-wide">TRIMART</h1>
 
         {/* Links */}
         <nav className="space-x-6 hidden md:flex">
-          <NavLink to="/home" className={linkClasses}>HOME</NavLink>
+          <NavLink to="/customer-dashboard" className={linkClasses}>HOME</NavLink>
           <NavLink to="/wishlist" className={linkClasses}>WISHLIST</NavLink>
           <NavLink to="/orders" className={linkClasses}>ORDERS</NavLink>
           <NavLink to="/cart" className={linkClasses}>CART</NavLink>
