@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/loginpageimage.png";
 import { FaEnvelope, FaLock, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Later add real validation/API here
+    navigate("/customer-dashboard"); // ✅ Redirect to Customer Dashboard
+  };
+
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left Image Section */}
@@ -22,7 +30,7 @@ export default function LoginPage() {
           Customer Login
         </h1>
 
-        <form className="w-full max-w-md">
+        <form onSubmit={handleLogin} className="w-full max-w-md">
           {/* Email */}
           <div className="flex items-center border-b-2 border-purple-500 mb-6">
             <FaEnvelope className="text-purple-800 mr-3" />
@@ -49,9 +57,12 @@ export default function LoginPage() {
               <input type="checkbox" className="mr-2 accent-purple-700" />
               Remember me
             </label>
-            <a href="#" className="text-sm text-purple-800 hover:underline">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-purple-800 hover:underline"
+            >
               Forgot Password?
-            </a>
+            </Link>
           </div>
 
           {/* Login Button */}

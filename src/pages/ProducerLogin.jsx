@@ -1,8 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom"; // ✅ import Link for navigation
+import { Link, useNavigate } from "react-router-dom"; 
 import producerBg from "../assets/producer-bg.png"; // adjust path as needed
 
 export default function ProducerLogin() {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Later you can add validation/API here
+    navigate("/producer-dashboard"); // ✅ Redirect to Producer Dashboard
+  };
+
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left Image Section */}
@@ -20,7 +28,7 @@ export default function ProducerLogin() {
           Producer Login
         </h1>
 
-        <form className="w-full max-w-md">
+        <form onSubmit={handleLogin} className="w-full max-w-md">
           {/* Email */}
           <input
             type="email"
@@ -55,9 +63,13 @@ export default function ProducerLogin() {
               <input type="checkbox" className="mr-2 accent-purple-700" />
               Remember me
             </label>
-            <a href="#" className="text-sm text-purple-800 hover:underline">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-purple-800 hover:underline"
+            >
               Forgot Password?
-            </a>
+            </Link>
+            
           </div>
 
           {/* Login Button */}
@@ -72,7 +84,7 @@ export default function ProducerLogin() {
           <p className="text-sm text-center mt-6 text-gray-700">
             Don’t have an account?{" "}
             <Link
-              to="/producer-signup" // ✅ your signup route
+              to="/producer-signup"
               className="text-purple-900 font-bold hover:underline"
             >
               Sign up now
