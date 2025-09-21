@@ -29,6 +29,7 @@ import Checkout from "./CustomerPages/Checkout"; // ✅ New Checkout page
 import CustomerLayout from "./layouts/CustomerLayout";
 import ProducerLayout from "./layouts/ProducerLayout";
 
+
 export default function App() {
   return (
     <Routes>
@@ -122,6 +123,12 @@ export default function App() {
           </CustomerLayout>
         }
       />
+
+      {/* Product Grid Page */}
+      <Route path="/" element={<MyProductPage />} />
+
     </Routes>
+
+    
   );
 }
