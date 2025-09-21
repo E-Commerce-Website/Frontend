@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import bannerImg from "../../assets/banner.png";
 
+// Sample products (unique IDs)
+const recentProducts = [
+  { id: 101, image: "/Products/Electronics/washing1.png", title: "Washing Machine", category: "electronics" },
+  { id: 102, image: "/Products/Snacks/snacks1.png", title: "Snacks Pack", category: "snacks" },
+  { id: 103, image: "/Products/Men/men1.png", title: "Men's Fashion", category: "men" },
+  { id: 104, image: "/Products/Women/women1.png", title: "Women's Dress", category: "women" },
+];
+
 export default function CustomerDashboard() {
   return (
     <div>
@@ -38,26 +46,23 @@ export default function CustomerDashboard() {
         </div>
       </div>
 
-      {/* ✅ Recent Search Section */}
+      {/* ✅ Recent Search / Collections Section */}
       <div className="px-6 pb-10">
         <h2 className="text-lg font-semibold mb-4">Recent search</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {/* ✅ Each product navigates to its category */}
-          <Link to="/customer/collection/Electronics">
-            <ProductCard image="/Products/Electronics/washing1.png" title="Washing Machine" />
-          </Link>
-
-          <Link to="/customer/collection/Snacks">
-            <ProductCard image="/Products/Snacks/snacks1.png" title="Snacks Pack" />
-          </Link>
-
-          <Link to="/customer/collection/Men">
-            <ProductCard image="/Products/Men/men1.png" title="Men's Fashion" />
-          </Link>
-
-          <Link to="/customer/collection/Women">
-            <ProductCard image="/Products/Women/women1.png" title="Women's Dress" />
-          </Link>
+          {recentProducts.map((product) => (
+            <Link
+              key={product.id}
+              to={`/customer/collection/${product.category}`}
+            >
+              <ProductCard
+                id={product.id}
+                image={product.image}
+                title={product.title}
+                showActions={false} // ✅ Hide Cart, Wishlist, Buy Now
+              />
+            </Link>
+          ))}
         </div>
       </div>
     </div>

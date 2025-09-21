@@ -8,6 +8,7 @@ import Welcome from "./pages/Welcome";
 import ProducerLogin from "./pages/ProducerLogin";
 import ProducerSignUp from "./pages/ProducerSignUp";
 import ProducerDashboard from "./pages/Dashboard/ProducerDashboard";
+import ProducerOrders from "./pages/Dashboard/ProducerOrders";
 
 // Customer pages
 import LoginPage from "./CustomerPages/LoginPage";
@@ -20,10 +21,12 @@ import Cart from "./CustomerPages/Cart";
 import Profile from "./CustomerPages/Profile";
 import Logout from "./CustomerPages/Logout";
 import CustomerCollection from "./pages/Dashboard/CustomerCollection";
+import Checkout from "./CustomerPages/Checkout"; // ✅ New Checkout page
 
 // Layout
 import CustomerLayout from "./layouts/CustomerLayout";
 import ProducerLayout from "./layouts/ProducerLayout";
+<Route path="/producer-orders" element={<ProducerOrders />} />
 
 export default function App() {
   return (
@@ -95,6 +98,16 @@ export default function App() {
         element={
           <CustomerLayout>
             <Logout />
+          </CustomerLayout>
+        }
+      />
+
+      {/* ✅ Checkout page */}
+      <Route
+        path="/checkout"
+        element={
+          <CustomerLayout>
+            <Checkout />
           </CustomerLayout>
         }
       />

@@ -1,17 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ProducerNavbar from "../../components/ProducerNavbar"; // ✅ Import
 
 export default function ProducerDashboard() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* ✅ Producer Navbar */}
-      <ProducerNavbar />
-
       {/* Centered Cards */}
-      <div className="flex justify-center items-center min-h-[80vh]">
+      <div className="flex justify-center items-center min-h-screen">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
           {/* My Products */}
           <div
