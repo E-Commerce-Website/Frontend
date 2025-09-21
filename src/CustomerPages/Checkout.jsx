@@ -1,20 +1,40 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useStore } from "../context/StoreContext";
 
 export default function Checkout() {
-  const { state } = useLocation(); // product details from navigate
+  const { state } = useLocation(); // product details
   const product = state || {};
+  const { addOrder } = useStore();
+  const navigate = useNavigate();
 
-  const [orderPlaced, setOrderPlaced] = useState(false); // ✅ Track order status
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    phone: "",
+    payment: "",
+  });
 
-  const handlePlaceOrder = (e) => {
+  // handle form input
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // place order
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // ✅ Here you can also call API to save order
-    // For now, just show success message
-    setOrderPlaced(true);
 
-    // Optional: clear form or cart
+    const newOrder = {
+      ...product,
+      ...formData,
+      id: Date.now(), // unique order id
+      status: "Pending",
+    };
+
+    addOrder(newOrder);
+
+    // ✅ redirect to Orders page
+    navigate("/orders");
   };
 
   return (
@@ -32,26 +52,41 @@ export default function Checkout() {
       </div>
 
       {/* User details form */}
-      <form className="space-y-4" onSubmit={handlePlaceOrder}>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
+          name="name"
           placeholder="Full Name"
+          value={formData.name}
+          onChange={handleChange}
           className="w-full border px-3 py-2 rounded"
           required
         />
         <input
           type="text"
+          name="address"
           placeholder="Address"
+          value={formData.address}
+          onChange={handleChange}
           className="w-full border px-3 py-2 rounded"
           required
         />
         <input
           type="tel"
+          name="phone"
           placeholder="Phone Number"
+          value={formData.phone}
+          onChange={handleChange}
           className="w-full border px-3 py-2 rounded"
           required
         />
-        <select className="w-full border px-3 py-2 rounded" required>
+        <select
+          name="payment"
+          value={formData.payment}
+          onChange={handleChange}
+          className="w-full border px-3 py-2 rounded"
+          required
+        >
           <option value="">Select Payment Method</option>
           <option value="cod">Cash on Delivery</option>
           <option value="card">Credit/Debit Card</option>
@@ -65,22 +100,6 @@ export default function Checkout() {
           Place Order
         </button>
       </form>
-
-      {/* ✅ Success popup */}
-      {orderPlaced && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h3 className="text-xl font-bold mb-2">Order Placed Successfully!</h3>
-            <p className="mb-4">Thank you for your purchase.</p>
-            <button
-              onClick={() => setOrderPlaced(false)}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -8,7 +8,6 @@ import Welcome from "./pages/Welcome";
 import ProducerLogin from "./pages/ProducerLogin";
 import ProducerSignUp from "./pages/ProducerSignUp";
 import ProducerDashboard from "./pages/Dashboard/ProducerDashboard";
-import ProducerOrders from "./pages/Dashboard/ProducerOrders";
 
 // Customer pages
 import LoginPage from "./CustomerPages/LoginPage";
@@ -26,7 +25,6 @@ import Checkout from "./CustomerPages/Checkout"; // ✅ New Checkout page
 // Layout
 import CustomerLayout from "./layouts/CustomerLayout";
 import ProducerLayout from "./layouts/ProducerLayout";
-<Route path="/producer-orders" element={<ProducerOrders />} />
 
 export default function App() {
   return (
