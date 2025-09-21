@@ -8,6 +8,9 @@ import Welcome from "./pages/Welcome";
 import ProducerLogin from "./pages/ProducerLogin";
 import ProducerSignUp from "./pages/ProducerSignUp";
 import ProducerDashboard from "./pages/Dashboard/ProducerDashboard";
+import MyProductPage from "./producermyproduct/MyProductPage";
+import AddProductPage from "./produceraddproduct/AddProductPage";
+import OrdersPage from "./producerorders/OrdersPage";
 
 // Customer pages
 import LoginPage from "./CustomerPages/LoginPage";
@@ -32,20 +35,20 @@ export default function App() {
       {/* Main Page */}
       <Route path="/" element={<Welcome />} />
 
-      {/* Producer Routes */}
+      {/* Producer Auth */}
       <Route path="/producer-login" element={<ProducerLogin />} />
       <Route path="/producer-signup" element={<ProducerSignUp />} />
 
       {/* ✅ Producer Layout with Navbar */}
       <Route element={<ProducerLayout />}>
         <Route path="/producer-dashboard" element={<ProducerDashboard />} />
-        <Route path="/producer-products" element={<div>My Products Page</div>} />
-        <Route path="/producer-add-product" element={<div>Add Product Page</div>} />
-        <Route path="/producer-orders" element={<div>Orders Page</div>} />
+        <Route path="/producer-products" element={<MyProductPage />} />
+        <Route path="/producer-add-product" element={<AddProductPage />} />
+        <Route path="/producer-orders" element={<OrdersPage />} />
         <Route path="/producer-logout" element={<div>Logout Page</div>} />
       </Route>
 
-      {/* Customer Auth Routes */}
+      {/* Customer Auth */}
       <Route path="/customer-login" element={<LoginPage />} />
       <Route path="/customer-signup" element={<SignupPage />} />
       <Route path="/forgot-password" element={<ForgotpasswordPage />} />
